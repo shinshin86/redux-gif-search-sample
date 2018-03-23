@@ -1,4 +1,4 @@
-import { take, put, call, fork, select } from 'redux-saga/effects'
+import { take, put, call, fork } from 'redux-saga/effects'
 import { REQUEST_DATA,  receiveData, failureData } from '../actions'
 import fetch from 'isomorphic-fetch'
 import { API_KEY } from '../env'
