@@ -9,18 +9,23 @@ const styles = {
   card: {
     maxWidth: 345,
   },
+  cardContent: {
+    textAlign: "center",
+  },
   title: {
     marginBottom: 16,
     fontSize: 14,
   },
+  actions: {
+    backgroundColor: "#E8EAF6"
+  },
 }
 
-function GifItem(props){
-  const { data, classes } = props
+const GifItem = ({ data, classes }) => {
   return (
     <div>
-      <Card>
-        <CardContent className={classes.card}>
+      <Card className={classes.card}>
+        <CardContent className={classes.cardContent}>
           <img src={data.images.fixed_height.url} alt={data.title} />
           <Typography variant="headline" component="textSecondary">
             {data.title}
@@ -29,7 +34,7 @@ function GifItem(props){
             {data.slug}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.actions}>
           <Button size="small" color="primary">
             <i className="material-icons">share</i>
           </Button>
