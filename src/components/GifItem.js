@@ -21,7 +21,7 @@ const styles = {
   },
 }
 
-const GifItem = ({ data, classes }) => {
+const GifItem = ({ data, classes, favoriteClick }) => {
   return (
     <div>
       <Card className={classes.card}>
@@ -38,17 +38,19 @@ const GifItem = ({ data, classes }) => {
           <Button size="small" color="primary">
             <i className="material-icons">share</i>
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={() => favoriteClick()}>
             <i className="material-icons">favorite</i>
           </Button>
-      </CardActions>
+        </CardActions>
       </Card>
     </div>
   )
 }
 
 GifItem.propTypes = {
+  data: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  favoriteClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(GifItem)
