@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { requestData } from '../actions'
+import { requestData, registFavo } from '../actions'
 import GifList from '../components/GifList'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
@@ -22,7 +22,7 @@ const styles = theme => ({
 class App extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
+    //this.handleClick = this.handleClick.bind(this)
 
     // local state
     this.state = {
@@ -36,12 +36,14 @@ class App extends Component {
     })
   }
   
+  /*
   handleClick() {
     this.props.dispatch(requestData(this.state.searchText))
   }
+  */
 
   render() {
-    const { data, isFetching, lastUpdated } = this.props
+    const { data, isFetching, lastUpdated, searchRequestClick, onFavoriteClick } = this.props
     return (
       <div>
         <Grid container spacing={24}>
@@ -54,7 +56,7 @@ class App extends Component {
               onChange={this.handleChange('searchText')}
               margin="normal"
             />
-            <Button size="small" color="primary" onClick={this.handleClick}>
+            <Button size="small" color="primary" onClick={() => searchRequestClick(this.state.searchText)}>
               <i className="material-icons">search</i>
             </Button>
           </Grid>
@@ -71,7 +73,7 @@ class App extends Component {
             {!isFetching && data.length === 0 && <h2>Let's GIF Search!</h2>}
             {data.length > 0 && (
               <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                <GifList data={data} />
+                <GifList data={data} onFavoriteClick={onFavoriteClick} />
               </div>
             )}
           </Grid>
@@ -85,24 +87,40 @@ App.propTypes = {
   data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   const { gifSearch } = state
-  const { isFetching, lastUpdated, data } = gifSearch || {
+  const { isFetching, lastUpdated, data, itemId, favoriteAt } = gifSearch || {
     isFetcing: false,
     data: [],
     lastUpdated: 0,
+    itemId: '',
+    favoriteAt: 0,
   }
 
   return {
     gifSearch,
     isFetching,
     lastUpdated,
-    data
+    data,
+    itemId,
+    favoriteAt,
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchRequestClick: (text) => {
+      dispatch(requestData(text))
+    },
+    onFavoriteClick: (id) => {
+      dispatch(registFavo(id))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App)
