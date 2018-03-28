@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
+import { Link } from 'react-router-dom'
 
 const styles = {
   title: {
@@ -13,7 +14,14 @@ const styles = {
     textAlign: 'left',
     textDecoration: 'none',
     color: '#FFFFFF',
-  }
+  },
+  textIcon: {
+    verticalAlign: 'middle',
+  },
+  linkText: {
+    textDecoration: 'none',
+    color: 'black',
+  },
 }
 
 const Sidebar = ({ classes }) => {
@@ -22,12 +30,16 @@ const Sidebar = ({ classes }) => {
       <h1 className={classes.title}>Menu</h1>
       <p>
         <Button className={classes.sidebarButton}>
-          page 1
+          <Link to='/' className={classes.linkText}>
+            <i className='material-icons' style={styles.textIcon}>home</i>
+            <span className={classes.textIcon}>Home</span>
+          </Link>
         </Button>
-      </p>
-      <p>
         <Button className={classes.sidebarButton}>
-          page 2
+          <Link to='/favorite' className={classes.linkText}>
+            <i className="material-icons" style={styles.textIcon}>favorite</i>
+            <span className={classes.textIcon}>Favorite</span>
+          </Link>
         </Button>
       </p>
     </div>
