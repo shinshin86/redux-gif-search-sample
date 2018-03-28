@@ -9,13 +9,16 @@ const styles = {
   root: {
     flexGrow: 1,
   },
+  header: {
+    background: '#d1c4e9',
+  },
 };
 
 function Header(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" className={classes.header}>
         <Toolbar>
           <Typography variant="title" color="inherit">
             Redux Gif Search 

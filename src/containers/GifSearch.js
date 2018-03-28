@@ -15,24 +15,25 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 300,
   },
 })
 
 class App extends Component {
-  state = {
-    searchText: '',
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+
+    // local state
+    this.state = {
+      searchText: '',
+    }
   }
 
   handleChange = searchText => event => {
     this.setState({
       [searchText]: event.target.value,
     })
-  }
-
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
   }
   
   handleClick() {
@@ -88,6 +89,7 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   const { gifSearch } = state
   const { isFetching, lastUpdated, data } = gifSearch || {
     isFetcing: false,
