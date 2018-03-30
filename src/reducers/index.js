@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import gifSearch from './gifSearch'
-// import favoriteItem from './favoriteItem'
+import favoriteItem from './favoriteItem'
 
 const rootReducer = combineReducers({
   gifSearch,
-//  favoriteItem,
+  favoriteItem,
 })
 
 export default rootReducer

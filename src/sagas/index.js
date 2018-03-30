@@ -1,6 +1,15 @@
 import { take, put, call, fork, select } from 'redux-saga/effects'
-import { REQUEST_DATA,  receiveData, failureData, REGIST_FAVO, successFavo, failureFavo } from '../actions'
 import fetch from 'isomorphic-fetch'
+import { REQUEST_DATA,
+         receiveData,
+         failureData,
+         REGIST_FAVO,
+         successFavo,
+         failureFavo,
+         REQUEST_FAVORITE_ITEM,
+         receiveFavoriteItem,
+         failureFavoriteItem
+        } from '../actions'
 import { API_KEY } from '../env'
 import { registFavoriteItem } from '../utils/item'
 
@@ -29,6 +38,24 @@ export function fetchGifsApi(query) {
 }
 
 export function* handleFavoriteItem() {
+  while (true) {
+    const action = yield take(REQUEST_FAVORITE_ITEM)
+    const data = yield call(fetchFavoriteItem)
+    console.log(data)
+
+    if(!data || data.length === 0) {
+      yield put(failureFavoriteItem())
+    } else {
+      yield put(receiveFavoriteItem(data))
+    }
+  }
+}
+
+export function fetchFavoriteItem() {
+  return JSON.parse(localStorage.getItem('favoriteItem'))
+}
+
+export function* handleRegistFavoriteItem() {
   while(true) {
     const action = yield take(REGIST_FAVO)
     const data   = yield call(getFetchedData) // get current fetch data...
@@ -59,4 +86,5 @@ export function* getFetchedData() {
 export default function* root() {
   yield fork(handleRequestData)
   yield fork(handleFavoriteItem)
+  yield fork(handleRegistFavoriteItem)
 }

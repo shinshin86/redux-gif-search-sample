@@ -5,10 +5,12 @@ export const registFavoriteItem = (item) => {
   // sample
   let favoItem = localStorage.getItem('favoriteItem')
   if(!favoItem) {
-    favoItem = {}
+    favoItem = []
+  } else {
+    favoItem = JSON.parse(favoItem)
   }
-  favoItem = JSON.stringify(item)
-  localStorage.setItem('favoriteItem', favoItem)
+  favoItem.push(item)
+  localStorage.setItem('favoriteItem', JSON.stringify(favoItem))
   return true // when failure regist, return error...
 }
 

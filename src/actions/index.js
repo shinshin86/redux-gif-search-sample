@@ -6,6 +6,10 @@ export const REGIST_FAVO = 'REGIST_FAVO'
 export const SUCCESS_FAVO = 'SUCCESS_FAVO'
 export const FAILURE_FAVO = 'FAILURE_FAVO'
 
+export const REQUEST_FAVORITE_ITEM = 'REQUEST_FAVORITE_ITEM'
+export const RECEIVE_FAVORITE_ITEM = 'RECEIVE_FAVORITE_ITEM'
+export const FAILURE_FAVORITE_ITEM = 'FAILURE_FAVORITE_ITEM'
+
 export function requestData(text) {
   return {
     type: REQUEST_DATA,
@@ -45,5 +49,26 @@ export function successFavo(item) {
 export function failureFavo() {
   return {
     type: FAILURE_FAVO
+  }
+}
+
+// fetch favorite item
+export function requestFavoriteItem() {
+  return {
+    type: REQUEST_FAVORITE_ITEM
+  }
+}
+
+export function receiveFavoriteItem(data) {
+  return {
+    type: RECEIVE_FAVORITE_ITEM,
+    data,
+    requestAt: Date.now(),
+  }
+}
+
+export function failureFavoriteItem() {
+  return {
+    type: FAILURE_FAVORITE_ITEM,
   }
 }

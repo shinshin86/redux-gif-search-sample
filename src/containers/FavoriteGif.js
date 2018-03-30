@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { requestData, registFavo } from '../actions'
+import { requestFavoriteItem } from '../actions'
 import FavoriteList from '../components/FavoriteList'
 import TextField from 'material-ui/TextField'
 import Button from 'material-ui/Button'
@@ -24,8 +24,12 @@ class FavoriteGif extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    this.props.dispatch(requestFavoriteItem()) 
+  }
+
   render() {
-    const { data, itemId, favoriteAt } = this.props
+    const { isFetching, data, requestAt } = this.props
     return (
       <div>
         <Grid container spacing={24}>
@@ -33,7 +37,7 @@ class FavoriteGif extends Component {
             {data.length === 0 && <h2>Not favorite item</h2>}
             {data.length > 0 && (
               <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                {data}
+                <FavoriteList data={data} />
               </div>
             )}
           </Grid>
@@ -47,19 +51,18 @@ FavoriteGif.propTypes = {
 }
 
 function mapStateToProps(state) {
-  const { gifSearch } = state
-  const { data, itemId, favoriteAt } = gifSearch || {
+  const { favoriteItem } = state
+  console.log(favoriteItem)
+  const { isFetching, data, requestAt } = favoriteItem || {
+    isFetching: false,
     data: [],
-    itemId: '',
-    favoriteAt: 0,
+    requestAt: 0,
   }
-  // test 
-  data.length = 0
 
   return {
+    isFetching,
     data,
-    itemId,
-    favoriteAt,
+    requestAt,
   }
 }
 
