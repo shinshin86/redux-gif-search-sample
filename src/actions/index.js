@@ -9,6 +9,7 @@ export const FAILURE_FAVO = 'FAILURE_FAVO'
 export const REQUEST_FAVORITE_ITEM = 'REQUEST_FAVORITE_ITEM'
 export const RECEIVE_FAVORITE_ITEM = 'RECEIVE_FAVORITE_ITEM'
 export const FAILURE_FAVORITE_ITEM = 'FAILURE_FAVORITE_ITEM'
+export const UPDATE_FAVORITE_COUNT = 'UPDATE_FAVORITE_COUNT'
 
 export function requestData(text) {
   return {
@@ -70,5 +71,11 @@ export function receiveFavoriteItem(data) {
 export function failureFavoriteItem() {
   return {
     type: FAILURE_FAVORITE_ITEM,
+  }
+}
+
+export function updateFavoriteCount() {
+  return {
+    type: UPDATE_FAVORITE_COUNT,
   }
 }

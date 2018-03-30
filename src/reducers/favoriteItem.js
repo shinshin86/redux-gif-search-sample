@@ -2,6 +2,7 @@ import {
   REQUEST_FAVORITE_ITEM,
   RECEIVE_FAVORITE_ITEM,
   FAILURE_FAVORITE_ITEM,
+  UPDATE_FAVORITE_COUNT,
 } from '../actions'
 
 const initial = {
@@ -34,6 +35,11 @@ export default function gifSearch(
       return {
         ...state,
         isFetching: false,
+      }
+    case UPDATE_FAVORITE_COUNT:
+      return {
+        ...state,
+        favoriteCount: state.data.length,
       }
     default:
       return state

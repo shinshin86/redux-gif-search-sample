@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import Sidebar from './Sidebar'
+import Sidebar from '../containers/Sidebar'
 import GifSearch from '../containers/GifSearch'
 import { withStyles } from 'material-ui/styles'
 

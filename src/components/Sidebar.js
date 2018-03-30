@@ -24,7 +24,7 @@ const styles = {
   },
 }
 
-const Sidebar = ({ classes }) => {
+const Sidebar = ({ classes, favoriteCount }) => {
   return (
     <div>
       <h1 className={classes.title}>Menu</h1>
@@ -38,7 +38,7 @@ const Sidebar = ({ classes }) => {
         <Button className={classes.sidebarButton}>
           <Link to='/favorite' className={classes.linkText}>
             <i className="material-icons" style={styles.textIcon}>favorite</i>
-            <span className={classes.textIcon}>Favorite</span>
+            <span className={classes.textIcon}>Favorite {favoriteCount}</span>
           </Link>
         </Button>
       </p>

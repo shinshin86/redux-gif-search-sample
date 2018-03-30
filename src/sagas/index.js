@@ -7,8 +7,10 @@ import { REQUEST_DATA,
          successFavo,
          failureFavo,
          REQUEST_FAVORITE_ITEM,
+         requestFavoriteItem,
          receiveFavoriteItem,
-         failureFavoriteItem
+         failureFavoriteItem,
+         updateFavoriteCount,
         } from '../actions'
 import { API_KEY } from '../env'
 import { registFavoriteItem } from '../utils/item'
@@ -63,6 +65,8 @@ export function* handleRegistFavoriteItem() {
     const res    = yield call(registFavoriteItem, item)
     if(res) {
       yield put (successFavo(item))
+      yield put (requestFavoriteItem())
+      yield put (updateFavoriteCount())
     } else {
       yield put (failureFavo())
     }
@@ -81,7 +85,6 @@ export function* getFetchedData() {
   console.log(gifSearch)
   return gifSearch.data
 }
-  
 
 export default function* root() {
   yield fork(handleRequestData)
