@@ -22,7 +22,6 @@ const styles = theme => ({
 class App extends Component {
   constructor(props) {
     super(props)
-    //this.handleClick = this.handleClick.bind(this)
 
     // local state
     this.state = {
@@ -35,12 +34,6 @@ class App extends Component {
       [searchText]: event.target.value,
     })
   }
-  
-  /*
-  handleClick() {
-    this.props.dispatch(requestData(this.state.searchText))
-  }
-  */
 
   render() {
     const { data, isFetching, lastUpdated, searchRequestClick, onFavoriteClick } = this.props

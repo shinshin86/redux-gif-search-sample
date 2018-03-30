@@ -48,6 +48,9 @@ class FavoriteGif extends Component {
 }
 
 FavoriteGif.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  requestAt: PropTypes.number
 }
 
 function mapStateToProps(state) {
