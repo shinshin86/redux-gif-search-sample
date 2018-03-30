@@ -2,7 +2,6 @@ export const registFavoriteItem = (item) => {
   console.log('*** regist favorite item ***')
   console.log(item)
 
-  // sample
   let favoItem = localStorage.getItem('favoriteItem')
   if(!favoItem) {
     favoItem = []
