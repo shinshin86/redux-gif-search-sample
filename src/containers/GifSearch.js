@@ -54,14 +54,6 @@ class App extends Component {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <p>
-              {lastUpdated !== 0 && <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}. </span>}
-              {!isFetching && data.length !== 0 && (
-                <button onClick={this.handleRefreshClick}>
-                  Refresh
-                </button>
-              )}
-            </p>
             {isFetching && data.length === 0 && <h2>Loading...</h2>}
             {!isFetching && data.length === 0 && <h2>Let's GIF Search!</h2>}
             {data.length > 0 && (
