@@ -8,9 +8,7 @@ export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     rootReducer,
-    applyMiddleware(
-      sagaMiddleware, createLogger()
-    )
+    applyMiddleware(sagaMiddleware, createLogger())
   )
   sagaMiddleware.run(rootSaga)
   return store
