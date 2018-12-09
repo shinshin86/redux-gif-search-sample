@@ -1,6 +1,8 @@
 node_modules/
 src/env.js
 static/
+dist/
 
 .DS_Store
+yarn-error.log
 
